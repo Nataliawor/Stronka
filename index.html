@@ -1,157 +1,171 @@
-:root {
-    --bg-blue: #003b5c;
-    --blueprint-line: rgba(255, 255, 255, 0.15);
-    --neon-yellow: #ccff00;
-    --paper-white: #f5f5f5;
-    --ink-black: #222;
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Szalony Architekt Domków dla Ptaków</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family: "Comic Sans MS", cursive;
+    background: linear-gradient(120deg,#a0f0ff,#ffd9f7,#c6ff9a);
+    background-size:400% 400%;
+    animation:tlo 12s infinite alternate;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+@keyframes tlo{
+    0%{background-position:0% 50%;}
+    100%{background-position:100% 50%;}
 }
 
-body {
-    background-color: var(--bg-blue);
-    font-family: 'Rajdhani', sans-serif;
-    color: white;
-    overflow-x: hidden;
-    min-height: 100vh;
+header{
+    text-align:center;
+    padding:60px 20px;
+    transform:rotate(-2deg);
 }
 
-/* Tło w kratkę projektową */
-.blueprint-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-        linear-gradient(var(--blueprint-line) 1px, transparent 1px),
-        linear-gradient(90deg, var(--blueprint-line) 1px, transparent 1px);
-    background-size: 30px 30px;
-    z-index: -1;
+h1{
+    font-size:60px;
+    color:#ff006e;
+    text-shadow:3px 3px 0 #000;
 }
 
-/* Nagłówek */
-header {
-    padding: 50px;
-    text-align: center;
+h2{
+    color:#3a0ca3;
 }
 
-.logo {
-    font-family: 'Architects Daughter', cursive;
-    font-size: 4rem;
-    text-transform: uppercase;
-    letter-spacing: -2px;
-    transform: skew(-10deg);
+.architekt{
+    font-size:20px;
+    max-width:800px;
+    margin:auto;
 }
 
-.logo span {
-    color: var(--neon-yellow);
-    text-decoration: underline;
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+    padding:40px;
 }
 
-.tagline {
-    font-style: italic;
-    opacity: 0.8;
+.karta{
+    background:white;
+    border-radius:25px;
+    padding:25px;
+    transform:rotate(calc(-3deg + 6deg * var(--r)));
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    transition:0.4s;
 }
 
-/* Obszar roboczy - Flexbox w lekkim chaosie */
-.workspace {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 40px;
-    padding: 50px;
+.karta:hover{
+    transform:scale(1.1) rotate(0deg);
+    background:#fff8a6;
 }
 
-/* Karty projektowe */
-.card {
-    background: var(--paper-white);
-    color: var(--ink-black);
-    padding: 30px;
-    width: 320px;
-    position: relative;
-    box-shadow: 15px 15px 0px rgba(0,0,0,0.2);
-    transform: rotate(var(--rotate));
-    transition: all 0.3s ease;
-    cursor: pointer;
+.ptak{
+    font-size:60px;
+    text-align:center;
 }
 
-.card:hover {
-    transform: rotate(0deg) scale(1.05) translateY(-10px);
-    z-index: 10;
-    box-shadow: 25px 25px 0px var(--neon-yellow);
+.przycisk{
+    display:inline-block;
+    margin-top:15px;
+    padding:10px 18px;
+    background:#ff006e;
+    color:white;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:bold;
 }
 
-.pin {
-    width: 15px;
-    height: 15px;
-    background: #ff4444;
-    border-radius: 50%;
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
+.przycisk:hover{
+    background:#8338ec;
 }
 
-.card h2 {
-    font-family: 'Architects Daughter', cursive;
-    margin: 20px 0 10px 0;
-    border-bottom: 2px solid var(--ink-black);
+footer{
+    text-align:center;
+    padding:40px;
+    font-size:14px;
 }
 
-/* "Fikuśne" kształty domków robione w CSS */
-.house-shape {
-    width: 100%;
-    height: 150px;
-    background: #ddd;
-    margin-bottom: 20px;
-    position: relative;
-    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%); /* Domkowy kształt */
-    border: 2px dashed #555;
+.obrot{
+    display:inline-block;
+    animation:spin 8s linear infinite;
 }
 
-.shape-1 { background: #889297; clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%); }
-.shape-2 { background: var(--bg-blue); clip-path: circle(50% at 50% 50%); }
-.shape-3 { background: #333; clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }
-
-/* Przyciski */
-.btn-build {
-    margin-top: 20px;
-    width: 100%;
-    padding: 10px;
-    background: var(--ink-black);
-    color: white;
-    border: none;
-    font-family: 'Rajdhani', sans-serif;
-    font-weight: bold;
-    text-transform: uppercase;
-    cursor: pointer;
-    clip-path: polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%);
+@keyframes spin{
+    from{transform:rotate(0deg);}
+    to{transform:rotate(360deg);}
 }
 
-.btn-build:hover {
-    background: var(--neon-yellow);
-    color: black;
+.chmurka{
+    position:fixed;
+    top:20%;
+    left:-200px;
+    font-size:50px;
+    animation:lot 20s linear infinite;
 }
 
-footer {
-    text-align: center;
-    padding: 100px 20px;
-    font-size: 1.2rem;
+@keyframes lot{
+    from{left:-200px;}
+    to{left:110%;}
 }
 
-footer span {
-    background: var(--neon-yellow);
-    color: black;
-    padding: 0 10px;
-}
+</style>
+</head>
 
-/* Responsywność */
-@media (max-width: 600px) {
-    .logo { font-size: 2.5rem; }
-    .card { width: 90%; }
-}
+<body>
+
+<div class="chmurka">🐦🐦🐦</div>
+
+<header>
+<h1>🪶 SZALONY ARCHITEKT 🪶</h1>
+<h2 class="obrot">Projektuję domki dla ptaków!</h2>
+
+<p class="architekt">
+Nazywam się <b>Archibald Ptasznik</b>. Projektuję najbardziej
+absurdalne, fantastyczne i luksusowe domki dla ptaków w całej galaktyce.
+Jeśli twoja sikorka marzy o willi z balkonem albo wróbel chce loft —
+dobrze trafiłeś.
+</p>
+</header>
+
+<section class="grid">
+
+<div class="karta" style="--r:0.2">
+<div class="ptak">🐦</div>
+<h3>Wróbel Loft</h3>
+<p>Minimalistyczny domek z mikrobalkonem i miejscem na ziarenka premium.</p>
+<a class="przycisk" href="#">Zobacz projekt</a>
+</div>
+
+<div class="karta" style="--r:0.7">
+<div class="ptak">🦉</div>
+<h3>Sowa Tower</h3>
+<p>Wysoka wieża obserwacyjna z panoramicznym widokiem na nocne polowanie.</p>
+<a class="przycisk" href="#">Zobacz projekt</a>
+</div>
+
+<div class="karta" style="--r:0.4">
+<div class="ptak">🐤</div>
+<h3>Kawalerka dla Pisklaka</h3>
+<p>Mała, przytulna, z ogrzewaniem z promieni słonecznych.</p>
+<a class="przycisk" href="#">Zobacz projekt</a>
+</div>
+
+<div class="karta" style="--r:0.9">
+<div class="ptak">🦜</div>
+<h3>Papuga Palace</h3>
+<p>Kolorowy pałac z miejscem na głośne plotkowanie i huśtawkę.</p>
+<a class="przycisk" href="#">Zobacz projekt</a>
+</div>
+
+</section>
+
+<footer>
+<p>© 2026 Szalony Architekt Domków dla Ptaków 🐦</p>
+<p>Projektujemy domki tak dziwne, że nawet dzięcioły mówią "wow".</p>
+</footer>
+
+</body>
+</html>
